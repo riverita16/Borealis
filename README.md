@@ -2,10 +2,11 @@
  No idea what this is gonna be
 
 ## Ideas?
-- **Spotify API** application to create radio
+- **Spotify API** application to create visual radio
   - User enters one song that is used to find similar songs and artists
   - Create queue and Spotify music player
-  - User can up/down vote a song and the queue adjusts
+  - User can down vote a song and the queue adjusts
+  - Add to library functionality?
 
   - For **front-end**: 
     - Show album art and audio visualization
@@ -26,3 +27,6 @@
 
 ## Data Structures
 ...
+
+## Workflow
+archive rest of readme when we finalize project idea
