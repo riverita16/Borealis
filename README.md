@@ -1,2 +1,2 @@
-# DSAProj3 - Team 77
-## No idea
+# Team 77 COP3530 Project 3
+## No idea what this is gonna be
