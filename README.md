@@ -8,9 +8,11 @@
   - User can up/down vote a song and the queue adjusts
 
   - For **front-end**: 
-    - Show album art and other song info
-    - Display song quote 
+    - Show album art and audio visualization
+    - Display song info 
     - Other view shows visual representation of song selection algorithm
+    - Maybe **Anvil** for python
+    - **openframeworks** looks cool for visualization
 
 - **Reelgood API** to find similar movies to input
   - Show streaming options for suggestions
