@@ -1,6 +1,12 @@
-import React from "react";
-import axios from 'axios';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import Spotify from 'react-spotify-embed/dist/package.json'
+import { Container } from 'react-bootstrap'
 import './App.css';
+
+// function Iframe(props) {
+//   return (<div dangerouslySetInnerHTML={ {__html:  props.iframe?props.iframe:""}} />);
+// }
 
 class Base extends React.Component {
   constructor(props) {
@@ -19,10 +25,19 @@ class Base extends React.Component {
       })
     };
 
-    fetch('http://localhost:8080/play', requestOptions)
+    fetch('/start', requestOptions)
     .then(function(response) {
-      console.log(response)
-      return response.json()
+      const url = new URL(response.json()['url']);
+      // const spotify = "<Spotify link={response.json()['url']} />"
+      // const iframe = '<iframe title="Spotify Web Player" src={`https://open.spotify.com/embed${url.pathname}`} width={300} height={380} allow="encrypted-media" style={{borderRadius: 8}}/>'
+      return (
+        <div>
+          <Container>
+            <h1>Iframe Demo</h1>
+            <iframe title="Spotify Web Player" src={`https://open.spotify.com/embed${url.pathname}`} width={300} height={380} allow="encrypted-media" style={{borderRadius: 8}}/>
+          </Container>
+        </div>
+      );
     })
   }
 
@@ -46,5 +61,9 @@ class Base extends React.Component {
     );
   }
 }
+
+// const rootElement = document.getElementById("root");
+// const root = createRoot(rootElement);
+// root.render(<Base />);
 
 export default Base;
