@@ -53,7 +53,7 @@ def start():
     radio.start_artist = response['artist']
     
     # authenticate with api
-    spot.authorize(SCOPE)
+    spot.authorize(SCOPE) 
 
     return {'status':200}
 
@@ -69,7 +69,7 @@ def callback():
     # visualize = spot.audio_analysis(song_id) # implement
 
     # return oEmbed API response for spotify player and visuals
-    return jsonify(radio.songEmbed(song_id))
+    return {'url':radio.songEmbed(song_id)['url']}
 
 @app.route('/upNext', methods=['GET'])
 def upNext():
@@ -80,10 +80,10 @@ def upNext():
 def next():
     song_id = radio.queue.pop()
     radio.seed_tracks.add(song_id)
-    html = radio.songEmbed(song_id)
+    url = radio.songEmbed(song_id)['url']
     # visualizer = SP.audio_analysis(song_id) #implement
 
-    return jsonify(html)
+    return {'url':url}
 
 @app.route('/action', methods=['POST'])
 def action():

@@ -18,13 +18,14 @@ class Radio:
 
     start_song = ''
     start_artist = ''
+    curr_url = ''
 
     # return HTML to embed player
     def songEmbed(self, song_id):
         self.played.add(song_id)
         # get song id spotify url
-        url = self.spot.request('https://api.spotify.com/v1/tracks/'+song_id, {})['external_urls']['spotify']
-        return {'url':url}
+        curr_url = self.spot.request('https://api.spotify.com/v1/tracks/'+song_id, {})['external_urls']['spotify']
+        return {'url':curr_url}
 
     # generate queue
     def generate(self):

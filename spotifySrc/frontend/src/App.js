@@ -25,9 +25,10 @@ class Base extends React.Component {
       })
     };
 
-    fetch('/start', requestOptions)
+    await fetch('/start', requestOptions)
     .then(function(response) {
-      const url = new URL(response.json()['url']);
+      console.log(response.json())
+      const url = new URL(response['url']);
       // const spotify = "<Spotify link={response.json()['url']} />"
       // const iframe = '<iframe title="Spotify Web Player" src={`https://open.spotify.com/embed${url.pathname}`} width={300} height={380} allow="encrypted-media" style={{borderRadius: 8}}/>'
       return (
