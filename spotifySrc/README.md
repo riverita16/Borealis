@@ -1,2 +1,3 @@
-# This probably does not compile or work properly yet
-Getting backend logic done before fixing front-end interaction
+# Updates
+- Flask interacts with React code
+- Fixing iframe not rendering
