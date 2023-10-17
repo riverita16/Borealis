@@ -12,7 +12,7 @@
     - Show album art and audio visualization
     - Display song info 
     - Other view shows visual representation of song selection algorithm
-    - Maybe **Anvil** for python
+    - **React** and **Flask** for frontend
     - **openframeworks** looks cool for visualization
 
 - **Reelgood API** to find similar movies to input
