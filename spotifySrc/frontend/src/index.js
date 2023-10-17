@@ -10,10 +10,4 @@ root.render(
   </React.StrictMode>
 );
 
-App.use(React.express.static(__dirname)); //here is important thing - no static directory, because all static :)
-
-App.get("/*", function(req, res) {
-  res.sendFile(React.path.join(__dirname, "index.html"));
-});
-
 reportWebVitals();

@@ -25,6 +25,7 @@ import urllib
 import webbrowser
 import json
 import sys
+from flask_cors import CORS
 
 # Spotipy library might be easier than direct requests with api
 import spotipy
@@ -35,8 +36,8 @@ import spotipy.util as util
 Setup
 '''
 
-HOST_IP_ADDRESS = '127.0.0.1'
-HOST_PORT = '3000'
+HOST_IP_ADDRESS = 'localhost'
+HOST_PORT = '8080'
 
 # Env vars
 # USERNAME = os.environ['SpotifyUser']
@@ -44,10 +45,10 @@ CLIENT_ID = os.environ.get('BorealisCID')
 CLIENT_SECRET = os.environ.get('BorealisSecret')
 
 SCOPE = ''
-REDIRECT_URI = 'http://127.0.0.1:3000/start'
+REDIRECT_URI = 'http://localhost:8080/start'
 
-app = flask.Flask('Borealis', static_folder='../frontend')
-
+app = flask.Flask('Borealis')
+CORS(app)
 # Test env vars can be read (for mac in ~/.zshenv)
 # print(CLIENT_ID)
 # print(CLIENT_SECRET)
@@ -69,12 +70,13 @@ queue = []
 # request to api for audio analysis of song - WORKS
 # audio_analysis = sp.audio_analysis(song_id)
 
+
 @app.route('/play', methods=['POST'])
 def play():
-    # grab user front-end
-    song_name = flask.request.form['song']
-    artist = flask.request.form['artist']
-
+    # grab user front-end 
+    song_name = flask.request.json['song']
+    artist = flask.request.json['artist']
+    
     # authenticate with api
     sp = auth()
     song_id = generate(sp, song_name, artist)
@@ -141,4 +143,4 @@ def action():
         pass
 
 if __name__ == '__main__':
-    app.run(host=HOST_IP_ADDRESS, port=HOST_PORT, use_reloader=True, threaded=True)
+    app.run(host=HOST_IP_ADDRESS, port=HOST_PORT, use_reloader=True, debug=True)
