@@ -1,27 +1,26 @@
 import React from 'react';
-// import Spotify from 'react-spotify-embed/dist/package.json'
-// import { Container } from 'react-bootstrap'
+import { Spotify } from 'react-spotify-embed'
+import { useNavigate } from 'react-router-dom'
+import './radio.css';
 
-const Radio = () => {
+const Radio = ({ url }) => {
+    const navigate = useNavigate();
+
+    if (!url) {
+        navigate('/');
+        return null; // You may choose to render something else while redirecting
+    }
+
     return (
         <div>
-            <p>Here goes the embedded player and audio visualizer background</p>
+            <h1>Spotify Player</h1>
+            <Spotify link={url} />
         </div>
     );
 }
 
 export default Radio;
 
-/* <div>
-<Container>
-  <h1>Iframe Demo</h1>
-  <iframe title="Spotify Web Player" src={`https://open.spotify.com/embed${url.pathname}`} width={300} height={380} allow="encrypted-media" style={{borderRadius: 8}}/>
-</Container>
-</div> */
 
-// const spotify = "<Spotify link={response.json()['url']} />"
-// const iframe = '<iframe title="Spotify Web Player" src={`https://open.spotify.com/embed${url.pathname}`} width={300} height={380} allow="encrypted-media" style={{borderRadius: 8}}/>'
+// <iframe autoPlay title="Spotify Web Player" src={`https://open.spotify.com/embed${fullURL.pathname}`} width={300} height={380} allow="encrypted-media" style={{borderRadius: 0}}/>
 
-// function Iframe(props) {
-//   return (<div dangerouslySetInnerHTML={ {__html:  props.iframe?props.iframe:""}} />);
-// }
