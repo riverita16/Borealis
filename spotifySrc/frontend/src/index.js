@@ -1,18 +1,18 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import App from './App';
-
-// Clear the existing HTML content
-document.body.innerHTML = '<div id="app"></div>';
+import Radio from './radio';
 
 // Render your React component instead
-const root = createRoot(document.getElementById('app'));
+const root = createRoot(document.getElementById('root'));
 
 root.render(
     <Router>
-        <React.StrictMode>
-            <App />
-        </React.StrictMode>
+        <Routes>
+            <Route path='/' element={ <App /> } />
+            <Route path="/radio" element={ <Radio /> } />
+            <Route path='*' element={ <App /> } />
+        </Routes>
     </Router>
 );

@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import Radio from './radio';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 
 function App() {
     const navigate = useNavigate();
 
-    const [url, setUrl] = useState('');
     const [song, setSong] = useState('');
     const [artist, setArtist] = useState('');
+
+    useEffect(() => {
+        // Reset the input values when the component mounts (user navigates back)
+        return () => {
+            setSong('');
+            setArtist('');
+        };
+    }, []);
 
     const Grab = async (e) => {
         e.preventDefault()
@@ -29,40 +35,37 @@ function App() {
         if (response.ok) {
             const responseData = await response.json();
             console.log(responseData)
-            setUrl(responseData.url);
-            navigate('/radio')
+
+            navigate('/radio', { state: { url: responseData.url} });
         } else {
-            alert('Error occurred while fetching data');
+            alert("Error occurred while fetching data");
         }
     };
 
     return (
-        <div className="App">
-            <Routes>
-                <Route path='/' element= {
-                    <div>
-                        <h1>Test</h1>
-                        <form onSubmit={Grab}>
-                            <label>Song</label>
-                            <input
-                                type="text"
-                                value={song}
-                                onChange={(e) => setSong(e.target.value)}
-                            />
-                            <label>Artist</label>
-                            <input
-                                type="text"
-                                value={artist}
-                                onChange={(e) => setArtist(e.target.value)}
-                            />
-                            <button type="submit">Submit</button>
-                        </form>
-                        {url && <p>Received URL: {url}</p>}
-                    </div>
-                } />
-
-                <Route path="/radio" element={ <Radio url={url} />} />
-            </Routes>
+        <div className="App aurora-outer">
+            <section id="up" />
+            <section id="down" />
+            <section id="left" />
+            <section id="right" />
+            <div className="box stuff">
+                <h1>Borealis</h1>
+                <form onSubmit={Grab}>
+                    <input
+                        type="text"
+                        value={song}
+                        placeholder='Song'
+                        onChange={(e) => setSong(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        value={artist}
+                        placeholder='Artist'
+                        onChange={(e) => setArtist(e.target.value)}
+                    />
+                    <button type="submit">Play</button>
+                </form>
+            </div>
         </div> 
     );
 }
