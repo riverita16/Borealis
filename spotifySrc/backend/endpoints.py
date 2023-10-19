@@ -31,7 +31,7 @@ CLIENT_ID = os.environ.get('BorealisCID')
 CLIENT_SECRET = os.environ.get('BorealisSecret')
 
 SCOPE = 'playlist-modify-private playlist-modify-public'
-REDIRECT_URI = 'http://localhost:8080/callback'
+REDIRECT_URI = 'http://localhost:8080/start'
 
 app = Flask('Borealis')
 CORS(app)
@@ -45,19 +45,26 @@ print(CLIENT_SECRET)
 spot = Spot(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
 radio = Radio(spot) 
 
-@app.route('/start', methods=['POST'])
+@app.route('/start', methods=['POST', 'GET'])
 def start():
-    # grab user front-end 
-    response = request.get_json()
-    radio.start_song = response['song']
-    radio.start_artist = response['artist']
-    
-    # authenticate with api
-    spot.authorize(SCOPE) 
+    if spot.callback is False:
+        # grab user front-end 
+        response = request.get_json()
+        radio.start_song = response['song']
+        radio.start_artist = response['artist']
+        
+        # authenticate with api
+        spot.authorize(SCOPE)
+        while radio.curr_id == '':
+            continue
+    else:
+        callback()
+        spot.callback = False
 
-    return {'status':200}
 
-@app.route('/callback')
+    # return oEmbed API response for spotify player and visuals
+    return {'url':radio.songEmbed(radio.curr_id)['url']}
+
 def callback():
     code = request.args.get('code')
     credentials = spot.get_token(code)
@@ -65,11 +72,9 @@ def callback():
 
     spot.get_profile()
 
-    song_id = radio.generate()
+    radio.curr_id = radio.generate()
     # visualize = spot.audio_analysis(song_id) # implement
-
-    # return oEmbed API response for spotify player and visuals
-    return {'url':radio.songEmbed(song_id)['url']}
+    print(radio.curr_id)
 
 @app.route('/upNext', methods=['GET'])
 def upNext():

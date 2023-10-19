@@ -18,6 +18,7 @@ class Radio:
 
     start_song = ''
     start_artist = ''
+    curr_id = ''
     curr_url = ''
 
     # return HTML to embed player

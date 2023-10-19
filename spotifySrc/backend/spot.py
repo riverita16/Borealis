@@ -12,6 +12,7 @@ class Spot:
         str = cid + ":" + secret
         self.BASE64_AUTH_STR = base64.b64encode(str.encode()).decode('utf-8')
         self.REDIRECT_URI = redirect
+        self.callback = False
 
     ACCESS_TOKEN = ''
     USER_ID = ''
@@ -25,6 +26,8 @@ class Spot:
             'scope': scope,
             'show_dialog': 'true'
         }
+
+        self.callback = True
 
         auth_url = 'https://accounts.spotify.com/authorize/?' + urllib.parse.urlencode(auth_request_params)
 
