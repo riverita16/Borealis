@@ -13,9 +13,14 @@
     "react-bootstrap": "^2.9.0",
     "react-dom": "^18.2.0",
     "react-iframe": "^1.8.5",
+    "react-router-dom": "^6.17.0",
     "react-scripts": "^3.0.1",
     "react-spotify-embed": "^2.0.3",
     "web-vitals": "^2.1.4"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "scripts": {
     "start": "PORT=6060 react-scripts start",

@@ -1,17 +1,13 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import Spotify from 'react-spotify-embed/dist/package.json'
-import { Container } from 'react-bootstrap'
 import './App.css';
+// import { useNavigate } from 'react-router-dom'
+// import Radio from './radio';
 
-// function Iframe(props) {
-//   return (<div dangerouslySetInnerHTML={ {__html:  props.iframe?props.iframe:""}} />);
-// }
-
-class Base extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {song: "", artist: ""};
+    this.navigate = '/radio';
   }
 
   grab = async (e) => {
@@ -25,26 +21,22 @@ class Base extends React.Component {
       })
     };
 
-    await fetch('/start', requestOptions)
-    .then(function(response) {
-      console.log(response.json())
-      const url = new URL(response['url']);
-      // const spotify = "<Spotify link={response.json()['url']} />"
-      // const iframe = '<iframe title="Spotify Web Player" src={`https://open.spotify.com/embed${url.pathname}`} width={300} height={380} allow="encrypted-media" style={{borderRadius: 8}}/>'
-      return (
-        <div>
-          <Container>
-            <h1>Iframe Demo</h1>
-            <iframe title="Spotify Web Player" src={`https://open.spotify.com/embed${url.pathname}`} width={300} height={380} allow="encrypted-media" style={{borderRadius: 8}}/>
-          </Container>
-        </div>
-      );
+    fetch('/start', requestOptions)
+    .then(response => response.json())
+    .then(data => {
+        // TODO: validate response
+        console.log(data)
+        // WithNavigate(this.props)
+        return(
+          <div>hello</div>
+        );
+        // const url = new URL(data['url']);
     })
   }
 
   render() {
     return (
-      <div className="wrapper">
+      <div>
         <h1>Test</h1>
         <form onSubmit={this.grab}>
             <p>
@@ -57,14 +49,14 @@ class Base extends React.Component {
               <input type="submit" value="Play" />
           </p>
         </form>
-                  
       </div>        
     );
   }
 }
 
-// const rootElement = document.getElementById("root");
-// const root = createRoot(rootElement);
-// root.render(<Base />);
+// export function WithNavigate(props) {
+//   let navigate = useNavigate()
+//   return <App {...props} navigate = {navigate} />
+// }
 
-export default Base;
+export default App;
