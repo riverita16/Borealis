@@ -30,8 +30,11 @@ class Radio:
 
     # generate queue
     def generate(self):
-        current_track = self.spot.request('https://api.spotify.com/v1/search?', {'q':f'track:{self.start_song} artist:{self.start_artist}', 'type':'track', 'limit':1})['tracks']['items'][0]
+        current_track = self.spot.request('https://api.spotify.com/v1/search?', {'q':f'track:{self.start_song} artist:{self.start_artist}', 'type':'track', 'limit':1})['tracks']['items']
+        if len(current_track) == 0:
+            current_track = self.spot.request('https://api.spotify.com/v1/search?', {'q':f'{self.start_song} {self.start_artist}', 'type':'track', 'limit':1})['tracks']['items']
 
+        current_track = current_track[0]
         song_id = current_track['id']
         self.played.add(song_id)
         artist_ids = set()

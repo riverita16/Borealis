@@ -48,6 +48,7 @@ radio = Radio(spot)
 @app.route('/start', methods=['POST', 'GET'])
 def start():
     if spot.callback is False:
+        print(request.get_json()) # remove this
         # grab user front-end 
         response = request.get_json()
         radio.start_song = response['song']
@@ -63,7 +64,9 @@ def start():
 
 
     # return oEmbed API response for spotify player and visuals
-    return {'url':radio.songEmbed(radio.curr_id)['url']}
+    ret = radio.songEmbed(radio.curr_id)['url']
+    radio.curr_id = ''
+    return {'url':ret}
 
 def callback():
     code = request.args.get('code')

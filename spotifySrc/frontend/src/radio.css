@@ -1,14 +1,8 @@
-.iframe-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 0%; /* Adjust this based on the aspect ratio of your iframe (16:9 = 56.25%) */
-  }
-  
-  .iframe-container iframe {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-  
+.Radio {
+  text-align: center;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  height: 100%; 
+  width: 100%;
+}
