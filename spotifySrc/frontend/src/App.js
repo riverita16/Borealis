@@ -1,62 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import Radio from './radio';
 import './App.css';
-// import { useNavigate } from 'react-router-dom'
-// import Radio from './radio';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {song: "", artist: ""};
-    this.navigate = '/radio';
-  }
+function App() {
+    const navigate = useNavigate();
 
-  grab = async (e) => {
-    e.preventDefault()
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        "song": this.state['song'],
-        "artist": this.state['artist'],
-      })
+    const [url, setUrl] = useState('');
+    const [song, setSong] = useState('');
+    const [artist, setArtist] = useState('');
+
+    const Grab = async (e) => {
+        e.preventDefault()
+
+        const data = {
+            song: song,
+            artist: artist
+        };
+
+        const response = await fetch('/start', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+            console.log(responseData)
+            setUrl(responseData.url);
+            navigate('/radio')
+        } else {
+            alert('Error occurred while fetching data');
+        }
     };
 
-    fetch('/start', requestOptions)
-    .then(response => response.json())
-    .then(data => {
-        // TODO: validate response
-        console.log(data)
-        // WithNavigate(this.props)
-        return(
-          <div>hello</div>
-        );
-        // const url = new URL(data['url']);
-    })
-  }
-
-  render() {
     return (
-      <div>
-        <h1>Test</h1>
-        <form onSubmit={this.grab}>
-            <p>
-              <label>Song</label>
-              <input type="text" name="song" onChange={(e) => this.setState({ song: e.target.value })}/>
-              <label>Artist</label>
-              <input type="text" name="artist" onChange={(e) => this.setState({ artist: e.target.value })}/>
-          </p>
-          <p>
-              <input type="submit" value="Play" />
-          </p>
-        </form>
-      </div>        
-    );
-  }
-}
+        <div className="App">
+            <Routes>
+                <Route path='/' element= {
+                    <div>
+                        <h1>Test</h1>
+                        <form onSubmit={Grab}>
+                            <label>Song</label>
+                            <input
+                                type="text"
+                                value={song}
+                                onChange={(e) => setSong(e.target.value)}
+                            />
+                            <label>Artist</label>
+                            <input
+                                type="text"
+                                value={artist}
+                                onChange={(e) => setArtist(e.target.value)}
+                            />
+                            <button type="submit">Submit</button>
+                        </form>
+                        {url && <p>Received URL: {url}</p>}
+                    </div>
+                } />
 
-// export function WithNavigate(props) {
-//   let navigate = useNavigate()
-//   return <App {...props} navigate = {navigate} />
-// }
+                <Route path="/radio" element={ <Radio url={url} />} />
+            </Routes>
+        </div> 
+    );
+}
 
 export default App;

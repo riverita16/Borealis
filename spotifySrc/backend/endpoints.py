@@ -19,7 +19,7 @@ import os
 
 from spot import Spot
 from radio import Radio
-from flask import Flask, jsonify, request, redirect
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 HOST_IP_ADDRESS = 'localhost'
