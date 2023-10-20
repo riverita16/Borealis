@@ -1,3 +1,7 @@
 # Updates
 - Flask interacts with React code
-- Fixing iframe not rendering
+- Good front end for home page
+- Spotify player renders
+- Queue play works
+- Need visualizer for radio page
+- Need dislike button with backend algorithm
