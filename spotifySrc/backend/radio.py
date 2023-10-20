@@ -45,7 +45,12 @@ class Radio:
             if 'genres' in artist:
                 genres.update(artist['genres'])
 
-        self.queue = self.spot.request('https://api.spotify.com/v1/recommendations?', {'seed_artists':artist_ids, 'seed_genres':genres, 'seed_tracks':self.seed_tracks, 'country':'US'})['tracks']
+        tracks = self.spot.request('https://api.spotify.com/v1/recommendations?', {'seed_artists':artist_ids, 'seed_genres':genres, 'seed_tracks':self.seed_tracks, 'country':'US'})['tracks']
+        
+        for track in tracks:
+            self.queue.append({'id': track['id'], 'url': track['external_urls']['spotify']})
+
+        print(self.queue)
 
         return song_id
 

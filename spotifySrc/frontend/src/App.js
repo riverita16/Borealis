@@ -18,27 +18,28 @@ function App() {
 
     const Grab = async (e) => {
         e.preventDefault()
-
-        const data = {
-            song: song,
-            artist: artist
-        };
-
-        const response = await fetch('/start', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        if (response.ok) {
-            const responseData = await response.json();
-            console.log(responseData)
-
-            navigate('/radio', { state: { url: responseData.url} });
-        } else {
-            alert("Error occurred while fetching data");
+        if (!(song.trim() === '' || artist.trim() === '')) {
+            const data = {
+                song: song.trim(),
+                artist: artist.trim()
+            };
+    
+            const response = await fetch('/start', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+    
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log(responseData)
+    
+                navigate('/radio', { state: { url: responseData.url } });
+            } else {
+                alert("Error occurred while fetching data");
+            }
         }
     };
 

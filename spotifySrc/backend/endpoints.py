@@ -79,6 +79,15 @@ def callback():
     # visualize = spot.audio_analysis(song_id) # implement
     print(radio.curr_id)
 
+# @app.route('/analyze', methods=['POST'])
+# def analyze():
+#     print(request.get_json())
+#     response = request.get_json()
+#     song_id = response['id']
+
+#     segments = spot.request('https://api.spotify.com/v1/audio-analysis/'+song_id, {})['segments']
+#     return {'segments':segments}
+
 @app.route('/upNext', methods=['GET'])
 def upNext():
     return jsonify(next=radio.queue[-1])
@@ -86,12 +95,11 @@ def upNext():
 # return player html for next song
 @app.route('/next', methods=['GET'])
 def next():
-    song_id = radio.queue.pop()
-    radio.seed_tracks.add(song_id)
-    url = radio.songEmbed(song_id)['url']
+    track = radio.queue.pop()
+    radio.seed_tracks.add(track['id'])
     # visualizer = SP.audio_analysis(song_id) #implement
 
-    return {'url':url}
+    return {'url':track['url']}
 
 @app.route('/action', methods=['POST'])
 def action():
