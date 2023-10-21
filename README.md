@@ -5,7 +5,6 @@
 - **Spotify API** application to create visual radio **(I started some code for this)**
   - User enters one song that is used to find similar songs and artists
   - Create queue and Spotify music player
-  - User can down vote a song and the queue adjusts
   - Add to library functionality?
 
   - For **front-end**: 

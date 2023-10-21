@@ -12,7 +12,7 @@ Description:
 - after first song input, embed spotify player over waves
     - spotify player oEmbed API
     - waves will implement first data structure
-- allow like or dislike to influence radio algorithm
+- allow add to library
 '''
 
 import os
@@ -30,7 +30,7 @@ HOST_PORT = '8080'
 CLIENT_ID = os.environ.get('BorealisCID')
 CLIENT_SECRET = os.environ.get('BorealisSecret')
 
-SCOPE = 'playlist-modify-private playlist-modify-public'
+SCOPE = 'user-library-read user-library-modify'
 REDIRECT_URI = 'http://localhost:8080/start'
 
 app = Flask('Borealis')
@@ -97,9 +97,17 @@ def upNext():
 def next():
     track = radio.queue.pop()
     radio.seed_tracks.add(track['id'])
-    # visualizer = SP.audio_analysis(song_id) #implement
+    radio.now_playing = track['id']
 
     return {'url':track['url']}
+
+# add track to liked songs
+@app.route('/like', methods=['PUT'])
+def like():
+    # print(f'now playing {radio.now_playing}')
+    res = spot.addToLib(radio.now_playing)
+
+    return {'status_code': res}
 
 @app.route('/action', methods=['POST'])
 def action():

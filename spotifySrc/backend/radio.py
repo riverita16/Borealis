@@ -20,6 +20,7 @@ class Radio:
     start_artist = ''
     curr_id = ''
     curr_url = ''
+    now_playing = ''
 
     # return HTML to embed player
     def songEmbed(self, song_id):
@@ -36,6 +37,7 @@ class Radio:
 
         current_track = current_track[0]
         song_id = current_track['id']
+        self.now_playing = song_id
         self.played.add(song_id)
         artist_ids = set()
         genres = set()
