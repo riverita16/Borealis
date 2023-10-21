@@ -67,14 +67,27 @@ class Spot:
         else:
             raise Exception(f'Failed to get profile. Response: {response.text}')
             
+    
+    def addToLib(self, id):
+        header = {
+            'Authorization': f'Bearer {self.ACCESS_TOKEN}',
+            'Content-Type': 'application/json'
+        }
+
+        response: requests.Response = requests.put('https://api.spotify.com/v1/me/tracks', headers=header, params={'ids':{id}})
+        if response.status_code == 200:
+            return 200
+        else:
+            raise Exception(f'Failed to add to library. Response: {response.text}')
+        
     # returns response json for parsing
     # expects body to be json
-    def request(self, url, body):
+    def request(self, url, param):
         header = {
             'Authorization': f'Bearer {self.ACCESS_TOKEN}'
         }
 
-        response: requests.Response = requests.get(url, headers=header, params=body)
+        response: requests.Response = requests.get(url, headers=header, params=param)
         if response.status_code == 200:
             return response.json()
         else:

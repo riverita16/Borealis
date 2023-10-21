@@ -18,7 +18,40 @@
   height: 100%;
 }
 
-button {
+
+.add {
+  width: 75 px;
+  height: 40px;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border: 1px solid #000;
+  background-color: transparent;
+  color: #000;
+  font-family: inherit;
+  font-size: large;
+  transition: all ease-in .2s;
+  cursor: pointer;
+}
+
+.add:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.added {
+  width: 150px;
+  height: 40px;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border: 1px solid #000;
+  background-color: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: default;
+}
+
+#next {
   width: 150px;
   height: 40px;
   padding: 5px 10px;
@@ -32,7 +65,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+#next:hover {
   background-color: #000;
   color: #fff;
 }
