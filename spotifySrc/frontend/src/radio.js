@@ -13,9 +13,6 @@ const Radio = () => {
     const [updatedUrl, setUrl] = useState(url);
     const [playback, setPlay] = useState('pause');
 
-    const [btn_class, setClass] = useState('add');
-    const [text, setText] = useState('+')
-
     useEffect(() => {
         // Reset the playback value when the component mounts (user navigates back)
         return () => {
@@ -46,8 +43,6 @@ const Radio = () => {
             const responseData = await response.json();
             console.log(responseData.url)
             setUrl(responseData.url);
-            setClass('add')
-            setText('+')
         } else {
             alert("Error occurred while fetching data");
         }
@@ -106,45 +101,24 @@ const Radio = () => {
         // };
     }, [Next, playback]);
 
-    // add to user liked songs
-    const Like = async (e) => {
-        e.preventDefault()
-
-        setClass('added')
-        setText('Added')
-
-        const response = await fetch('/like', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        });
-
-        if (response.ok) {
-            console.log('added song to library')
-        } else {
-            alert("Error occurred while putting data");
-        }
-    }
-
     return (
-        <div className='Radio'>
-            <h1>Now Playing...</h1>
+        <div className="Radio aurora-outer">
+            <section id="up" />
+            <section id="down" />
+            <section id="left" />
+            <section id="right" />
+            <div className="box stuff">
+                <h1>Now Playing...</h1>
 
-            <div id="transparent">
-                <Spotify link={updatedUrl} />
-            </div>
-            <div>
-                <button className={btn_class} onClick={Like}>{text}</button>
-                <button id="next" onClick={Next}>Next Song</button>
+                <div id="transparent">
+                    <Spotify link={updatedUrl} />
+                </div>
+                <div>
+                    <button id="next" onClick={Next}>Next Song</button>
+                </div>
             </div>
         </div>
     );
 }
 
 export default Radio;
-
-
-// <iframe autoPlay title="Spotify Web Player" src={`https://open.spotify.com/embed${fullURL.pathname}`} width={300} height={380} allow="encrypted-media" style={{borderRadius: 0}}/>
-
-// analyzer will go in  <canvas id="audio_visual"></canvas> 

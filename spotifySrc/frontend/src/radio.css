@@ -8,6 +8,125 @@
   font-family: 'poppins';
 }
 
+.box {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  height: 100%; 
+  width: 100%;
+}
+
+.stuff {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -20px;
+  text-align: center;
+}
+
+#up {
+  position: absolute;
+  height: 800px;
+  width: 800px;
+  border-radius: 50%;
+  background-image: linear-gradient(80deg,#4eaa70 49%, #bf5f84 82%);
+  filter: blur(80px);
+  animation: down 20s infinite;
+}
+
+#down {
+  position: absolute;
+  right: 0;
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+  background-image: linear-gradient(80deg,#c4e86c 49%, #e94062 82%);
+  filter: blur(80px);
+  animation: up 20s infinite;
+}
+
+#left {
+  position: absolute;
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+  background-image: linear-gradient(80deg,#7369cb 49%, #49c4c8 82%);
+  filter: blur(80px);
+  animation: left 20s 1s infinite;
+}
+
+#right {
+  position: absolute;
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+  background-image: linear-gradient(80deg,#cf6c79 49%, #eb9c56 82%);
+  filter: blur(80px);
+  animation: right 20s .5s infinite;
+}
+
+@keyframes down {
+  0%, 100% {
+    top: -100px;
+  }
+  70% {
+    top: 700px;
+  }
+}
+
+@keyframes up {
+  0%, 100% {
+    bottom: -100px;
+  }
+  70% {
+    bottom: 700px;
+  }
+}
+
+@keyframes left {
+  0%, 100% {
+    left: -100px;
+  }
+  70% {
+    left: 1300px;
+  }
+}
+
+@keyframes right {
+  0%, 100% {
+    right: -100px;
+  }
+  70% {
+    right: 1300px;
+  }
+}
+
+.aurora-outer {
+  background: linear-gradient(80deg,#3fbfff 0%, #3f65ff 49%, #ea75bd 82%);
+  background-size: 200%;
+  overflow: hidden;
+  animation: aurora 10s infinite;
+}
+
+@keyframes aurora {
+  0% {
+      background-position: left top;
+  }
+  25% {
+      background-position: right top;
+  }
+  50% {
+      background-position: right bottom;
+  }
+  75% {
+      background-position: left bottom;
+  }
+  100% {
+      background-position: left top;
+  }
+}
+
 /* So that background visualizer is visible */
 #transparent {
   opacity: 1;
@@ -16,39 +135,6 @@
 .audio_visual {
   width: 100%;
   height: 100%;
-}
-
-
-.add {
-  width: 75 px;
-  height: 40px;
-  padding: 5px 10px;
-  margin: 0 10px;
-  border: 1px solid #000;
-  background-color: transparent;
-  color: #000;
-  font-family: inherit;
-  font-size: large;
-  transition: all ease-in .2s;
-  cursor: pointer;
-}
-
-.add:hover {
-  background-color: #000;
-  color: #fff;
-}
-
-.added {
-  width: 150px;
-  height: 40px;
-  padding: 5px 10px;
-  margin: 0 10px;
-  border: 1px solid #000;
-  background-color: #000;
-  color: #fff;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: default;
 }
 
 #next {

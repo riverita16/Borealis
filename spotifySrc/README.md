@@ -4,7 +4,7 @@
 - [x] Spotify player renders
 - [x] Queue play works
 - [x] When song ends go to next song (no back function)
-- [ ] Add to liked songs functionality
+- [x] Add to liked songs functionality
 - [ ] Validate only tracks are inputted (catch fails to /track endpoint)
 
 - [ ] Visualizer for radio page
