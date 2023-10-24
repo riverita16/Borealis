@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Dropdown from 'react-bootstrap/Dropdown';
 import './App.css';
 
 function App() {
@@ -64,6 +65,21 @@ function App() {
                         placeholder='Artist'
                         onChange={(e) => setArtist(e.target.value)}
                     />
+
+                    <div className='dropdown'>
+                        <select name="characteristic" id="characteristic">
+                            <option value="none">None</option>
+                            <option value="quick">Quicksort</option>
+                            <option value="smooth">Smoothsort</option>
+                        </select>
+
+                        <select name="sorting" id="sorting">
+                            <option value="none">None</option>
+                            <option value="quick">Quicksort</option>
+                            <option value="smooth">Smoothsort</option>
+                        </select>
+                    </div>
+
                     <button type="submit">Play</button>
                 </form>
             </div>
