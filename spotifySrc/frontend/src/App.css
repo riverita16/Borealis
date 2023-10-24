@@ -133,6 +133,10 @@
   cursor: default;
 }
 
+.stuff .dropdown {
+  display: inline-block;
+}
+
 .stuff form {
   display: flex;
   flex-direction: column;
