@@ -1,0 +1,12 @@
+.box {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    height: 100%; 
+    width: 100%;
+    font-family: 'poppins';
+}
+
+body {
+    min-height: 100vh;
+}
