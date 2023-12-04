@@ -32,9 +32,9 @@ It can be hard to find songs that are similar to one specific track, rather than
 - [ ] Validate only tracks are inputted (catch fails to /track endpoint)
 
 - [ ] Sort queue
-      - [ ] Quicksort
-      - [ ] Smoothsort
-      - [ ] Allow each by a song characteristic
+    - [ ] Quicksort
+    - [ ] Smoothsort
+    - [ ] Allow each by a song characteristic
 
 - [ ] Make new logo for tab
 
