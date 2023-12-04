@@ -1,7 +1,5 @@
 # merge 2 subarrays from arr
 def mergeSort(arr, charac):
-    if len(arr) <= 1:
-        return arr
 
     # Split the array into two halves
     mid = len(arr) // 2
