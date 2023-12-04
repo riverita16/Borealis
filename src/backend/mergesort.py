@@ -1,33 +1,34 @@
-# merge 2 subarrays from arr
 def mergeSort(arr, charac):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        leftArr = arr[:mid]
+        rightArr = arr[mid:]
 
-    # Split the array into two halves
-    mid = len(arr) // 2
-    leftArr = arr[:mid]
-    rightArr = arr[mid:]
+        # Recursively sort the two halves
+        mergeSort(leftArr, charac)
+        mergeSort(rightArr, charac)
+        
+        merge(arr, leftArr, rightArr, charac)
 
-    # Recursively sort both halves
-    leftArr = mergeSort(leftArr, charac)
-    rightArr = mergeSort(rightArr, charac)
-
+def merge(arr, left, right, charac):
     # Merge the sorted halves
-    return merge(leftArr, rightArr, charac)
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i][charac] < right[j][charac]:
+                arr[k] = left[i]
+                i += 1
+            else:
+                arr[k] = right[j]
+                j += 1
+            k += 1
 
-def merge(left, right, charac):
-    result = []
-    i = j = 0
-
-    # Compare elements from the left and right halves and merge them
-    while i < len(left) and j < len(right):
-        if left[i][charac] < right[j][charac]:
-            result.append(left[i])
+        # Check if any elements are left
+        while i < len(left):
+            arr[k] = left[i]
             i += 1
-        else:
-            result.append(right[j])
+            k += 1
+
+        while j < len(right):
+            arr[k] = right[j]
             j += 1
-
-    # Append the remaining elements from both halves
-    result.extend(left[i:])
-    result.extend(right[j:])
-
-    return result
+            k += 1
