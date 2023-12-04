@@ -94,6 +94,7 @@ class Radio:
             track[self.characteristic] = abs(start_charac - track[self.characteristic])
 
         # sort self.queue based on start_charac value
+        
         testq = self.queue
 
         # if self.sort_alg == 'merge':
