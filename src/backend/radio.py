@@ -1,6 +1,6 @@
 from spot import Spot
 from flask import jsonify
-import mergesort
+from mergesort import mergeSort
 
 # generate radio queue by getting similar song
 
@@ -21,7 +21,7 @@ class Radio:
 
     # for sorting
     characteristic = ''
-    sort = ''
+    sort_alg = ''
 
     # return HTML to embed player
     def songEmbed(self, song_id):
@@ -54,26 +54,28 @@ class Radio:
         for track in tracks:
             self.queue.append({'id': track['id'], 'url': track['external_urls']['spotify']})
 
-        # self.sort()
-        print(self.queue)
+        self.sort()
+        # print(self.queue)
 
         return self.start_id
     
     # ids is string of comma-separated ids
     def analyze(self, ids, charac):
         characs = []
-        response = self.spot.request('https://api.spotify.com/v1/audio-features?', {'ids':ids})['audio_features']
+        response = self.spot.request(f'https://api.spotify.com/v1/audio-features?', {'ids':ids})['audio_features']
+        # print(response)
+
         for track in response:
             characs.append({'id':track['id'], 'url':f'https://open.spotify.com/track/'+track['id'], charac:track[charac]})
 
         return characs
 
     def sort(self):
-        if self.sort == '' or self.characteristic == '':
+        if self.sort_alg == '' or self.characteristic == '':
             return # do nothing
         
         # get start song characteristic
-        start_charac = self.analyze(self.start_song, self.characteristic)[self.characteristic]
+        start_charac = self.analyze(self.start_id, self.characteristic)[0][self.characteristic]
 
         # get tuple array of queue with characteristic value
         ids = ''
@@ -85,8 +87,12 @@ class Radio:
         # queue now has characteristics for each track
         self.queue = self.analyze(ids, self.characteristic)
 
+        # make characs the difference between the value and the start value
+        for track in self.queue:
+            track[self.characteristic] = abs(start_charac - track[self.characteristic])
+
         # sort self.queue based on start_charac value
-        if self.sort == 'merge':
-            pass # mergesort
-        else: # quicksort
+        if self.sort_alg == 'merge':
+            mergeSort(self.queue, self.characteristic)
+        else: # quicksort/smoothsort
             pass

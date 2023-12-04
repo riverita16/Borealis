@@ -1,5 +1,5 @@
 # merge 2 subarrays from arr
-def mergeSort(arr):
+def mergeSort(arr, charac):
     if len(arr) <= 1:
         return arr
 
@@ -9,19 +9,19 @@ def mergeSort(arr):
     rightArr = arr[mid:]
 
     # Recursively sort both halves
-    leftArr = mergeSort(leftArr)
-    rightArr = mergeSort(rightArr)
+    leftArr = mergeSort(leftArr, charac)
+    rightArr = mergeSort(rightArr, charac)
 
     # Merge the sorted halves
-    return merge(leftArr, rightArr)
+    return merge(leftArr, rightArr, charac)
 
-def merge(left, right):
+def merge(left, right, charac):
     result = []
     i = j = 0
 
     # Compare elements from the left and right halves and merge them
     while i < len(left) and j < len(right):
-        if left[i] < right[j]:
+        if left[i][charac] < right[j][charac]:
             result.append(left[i])
             i += 1
         else:
@@ -33,14 +33,3 @@ def merge(left, right):
     result.extend(right[j:])
 
     return result
-
-
-# makes an array containing the deviation from list of songs and the user's original request
-def sort(ogVal, valArr, numVals):
-    
-    arr = [0.0] * numVals
-    
-    for i in range(numVals):
-        arr[i] = abs(ogVal - valArr[i])
-
-    return mergeSort(arr)
