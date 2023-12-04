@@ -41,6 +41,7 @@ It can be hard to find songs that are similar to one specific track, rather than
 - [ ] Make new logo for tab
 
 # Dependencies
+- Spotify Developer account
 - set env vars
 - requests
 - selenium

@@ -57,6 +57,7 @@ def callback():
     code = request.args.get('code')
     credentials = spot.get_token(code)
     spot.ACCESS_TOKEN = credentials['access_token']
+    spot.authenticated = True
 
     radio.curr_id = radio.generate(True)
     print(radio.curr_id)
