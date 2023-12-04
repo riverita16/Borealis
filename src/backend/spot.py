@@ -16,9 +16,9 @@ class Spot:
         options = Options()
         options.add_argument('--headless')
         self.BROWSER = webdriver.Chrome(options=options)
+        self.authenticated = False
 
     ACCESS_TOKEN = ''
-    USER_ID = ''
 
     def authorize(self, scope):
         auth_request_params = {
@@ -74,20 +74,6 @@ class Spot:
             return response.json()
         
         raise Exception(f'Failed to obtain Access Token. Response: {response.text}')
-    
-    def get_profile(self):
-        profile_url = 'https://api.spotify.com/v1/me'
-        header = {
-            'Authorization': f'Bearer {self.ACCESS_TOKEN}'
-        }
-
-        response: requests.Response = requests.get(profile_url, headers=header)
-        if response.status_code == 200:
-            response = response.json()
-            self.USER_ID = str(response['id'])
-            
-        else:
-            raise Exception(f'Failed to get profile. Response: {response.text}')
                     
     # returns response json for parsing
     # expects body to be json
