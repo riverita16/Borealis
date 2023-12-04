@@ -10,7 +10,6 @@ const Radio = () => {
     const { url } = location.state;
     const [updatedUrl, setUrl] = useState(url);
     const [playback, setPlay] = useState('pause');
-    const [allowNext, setNext] = useState(true);
 
     useEffect(() => {
         // Reset the playback value when the component mounts (user navigates back)
@@ -42,12 +41,15 @@ const Radio = () => {
             const responseData = await response.json();
             console.log(responseData.url)
             setUrl(responseData.url);
-            setNext(true);
         } else {
             alert("Error occurred while fetching data");
         }
     }, []);
 
+    const checkEnd = async () => {
+
+    }
+    
     // track user pause and play for visualizer
     useEffect(() => {
         window.addEventListener(
@@ -62,20 +64,9 @@ const Radio = () => {
                             return 'play'
                         } else if (prevState === 'play' && event.data.payload.isPaused) {
                             // when song ends go to next song
-                            
                             // FIX MULTIPLE GET REQUESTS
-                            setNext((state) => {
-                                console.log(state);
-                                return state;
-                            });
-
-                            if (parseInt(event.data.payload.position) === 0 && allowNext) {
-                                setNext(false);
-                                setNext((state) => {
-                                    console.log(state);
-                                    return state;
-                                });
-
+                            console.log(event.data.payload.position)
+                            if (parseFloat(event.data.payload.position) === 0.0) {
                                 console.log('Song ended')
                                 const syntheticEvent = {
                                     preventDefault: () => {}
@@ -112,7 +103,7 @@ const Radio = () => {
         // return () => {
         //     window.removeEventListener('message', handleIframeEvent);
         // };
-    }, [Next, playback, allowNext]);
+    }, [Next, playback]);
 
     return (
         <div className="Radio aurora-outer">
