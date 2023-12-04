@@ -35,7 +35,7 @@ def start():
         radio.start_song = response['song']
         radio.start_artist = response['artist']
         radio.characteristic = response['characteristic']
-        radio.sort = response['sort']
+        radio.sort_alg = response['sort']
         
         # authenticate with api
         spot.authorize(SCOPE)

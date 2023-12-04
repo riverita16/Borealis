@@ -15,6 +15,8 @@ It can be hard to find songs that are similar to one specific track, rather than
     - Display song info 
     - **React JS** and **Flask** for frontend
 
+**Note:** The program expects a song. If a different form of media is inputted, Borealis will find a song that most closely matches the entered name.
+
 ## Algorithms
 - Mergesort
 - Smoothsort
@@ -32,13 +34,14 @@ It can be hard to find songs that are similar to one specific track, rather than
 - [ ] Validate only tracks are inputted (catch fails to /track endpoint)
 
 - [ ] Sort queue
-    - [ ] Quicksort
+    - [x] Mergesort
     - [ ] Smoothsort
     - [ ] Allow each by a song characteristic
 
 - [ ] Make new logo for tab
 
 # Dependencies
+- set env vars
 - requests
 - selenium
 - flask

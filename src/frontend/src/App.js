@@ -76,7 +76,7 @@ function App() {
                     <div className='dropdown'>
                         <select name="characteristic" id="characteristic" onChange={(e) => setCharac(e.target.value)}>
                             <option value="" disabled selected id="placeholder">Characteristic</option>
-                            <option value="none">None</option>
+                            <option value="">None</option>
                             <option value="acousticness">Acousticness</option>
                             <option value="danceability">Danceability</option>
                             <option value="energy">Energy</option>
@@ -89,7 +89,7 @@ function App() {
 
                         <select name="sorting" id="sorting" onChange={(e) => setSort(e.target.value)}>
                             <option value="" disabled selected id="placeholder">Algorithm</option>
-                            <option value="none">None</option>
+                            <option value="">None</option>
                             <option value="merge">Mergesort</option>
                             <option value="smooth">Smoothsort</option>
                         </select>
