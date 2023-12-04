@@ -1,5 +1,6 @@
 from spot import Spot
 from flask import jsonify
+import mergesort
 
 # generate radio queue by getting similar song
 
@@ -87,5 +88,5 @@ class Radio:
         # sort self.queue based on start_charac value
         if self.sort == 'merge':
             pass # mergesort
-        else: # smoothsort
+        else: # quicksort
             pass

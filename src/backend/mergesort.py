@@ -1,5 +1,3 @@
-import radio
-
 # merge 2 subarrays from arr
 def mergeSort(arr):
     if len(arr) <= 1:
