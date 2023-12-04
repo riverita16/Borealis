@@ -32,12 +32,11 @@ It can be hard to find songs that are similar to one specific track, rather than
   - [ ] Fix multiple requests to /next at song end
 - [x] Add to liked songs functionality (EDIT: Embedded player already has this functionality)
 
-- [ ] Sort queue
-    - [x] Mergesort
-    - [ ] Quicksort
-    - [ ] Allow each by a song characteristic
-
-- [ ] Make new logo for tab
+- [x] Sort queue
+    - [x] Merge Sort
+    - [x] Quick Sort
+    - [x] Bubble Sort
+    - [x] Allow each by a song characteristic
 
 # Dependencies
 - Spotify Developer account

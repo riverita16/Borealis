@@ -90,8 +90,9 @@ function App() {
                         <select name="sorting" id="sorting" onChange={(e) => setSort(e.target.value)}>
                             <option value="" disabled selected id="placeholder">Algorithm</option>
                             <option value="">None</option>
-                            <option value="merge">Mergesort</option>
-                            <option value="quick">Quicksort</option>
+                            <option value="merge">Merge Sort</option>
+                            <option value="quick">Quick Sort</option>
+                            <option value="bubble">Bubble Sort</option>
                         </select>
                     </div>
 
