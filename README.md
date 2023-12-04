@@ -38,5 +38,13 @@ It can be hard to find songs that are similar to one specific track, rather than
 
 - [ ] Make new logo for tab
 
+# Dependencies
+- requests
+- selenium
+- flask
+- flask_cors
+- npm
+- react
+
 # npm error fixes 'ERR_OSSL_EVP_UNSUPPORTED'
 - export NODE_OPTIONS=--openssl-legacy-provider
