@@ -38,8 +38,7 @@ def start():
         radio.sort_alg = response['sort']
         
         # authenticate with api
-        if not spot.authenticated:
-            spot.authorize(SCOPE)
+        spot.authorize(SCOPE)
         # wait for data
         while radio.curr_id == '':
             continue
@@ -57,7 +56,6 @@ def callback():
     code = request.args.get('code')
     credentials = spot.get_token(code)
     spot.ACCESS_TOKEN = credentials['access_token']
-    spot.authenticated = True
 
     radio.curr_id = radio.generate(True)
     print(radio.curr_id)

@@ -16,7 +16,6 @@ class Spot:
         options = Options()
         options.add_argument('--headless')
         self.BROWSER = webdriver.Chrome(options=options)
-        self.authenticated = False
 
     ACCESS_TOKEN = ''
 
@@ -38,7 +37,7 @@ class Spot:
         options = Options()
         options.add_experimental_option("detach", True)
         self.BROWSER = webdriver.Chrome(options=options)
-        self.BROWSER.get(auth_url) 
+        self.BROWSER.get(auth_url)
 
     def tab(self, tab):
         self.BROWSER.switch_to.window(tab)
