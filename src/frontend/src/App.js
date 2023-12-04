@@ -44,7 +44,7 @@ function App() {
                 console.log(responseData)
     
                 navigate('/radio', { state: { url: responseData.url } });
-            } else { // add non-song alert
+            } else {
                 alert("Error occurred while fetching data");
             }
         }
@@ -91,7 +91,7 @@ function App() {
                             <option value="" disabled selected id="placeholder">Algorithm</option>
                             <option value="">None</option>
                             <option value="merge">Mergesort</option>
-                            <option value="smooth">Smoothsort</option>
+                            <option value="quick">Quicksort</option>
                         </select>
                     </div>
 

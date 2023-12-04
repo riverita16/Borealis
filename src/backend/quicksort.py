@@ -1,3 +1,5 @@
+import radio
+
 def partition(array, low, high, charac):
  
     pivot = array[low][charac]
@@ -25,18 +27,20 @@ def partition(array, low, high, charac):
 
 
  
-def quickSort(array, low, high, charac):
+def quickSort(radio, low, high):
     if low < high:
  
-        pivot = partition(array, low, high, charac)
+        pivot = partition(radio.queue, low, high, radio.characteristic)
  
         # call quick sort on the left of pivot
-        quickSort(array, low, pivot - 1, charac)
+        quickSort(radio, low, pivot - 1)
  
         # call quick sort on the right of pivot
-        quickSort(array, pivot + 1, high, charac)
+        quickSort(radio, pivot + 1, high)
  
  
+# Testing
+'''
 data = [[1, 2, 3], [3, 4, 5], [6, 7, 8], [2, 3, 4], [-2, -1, 4], [5, 2, -1], [-7, 0, 3]]
 print("Unsorted Array")
 print(data)
@@ -47,3 +51,4 @@ quickSort(data, 0, size - 1, 1)
  
 print('Sorted Array in Ascending Order:')
 print(data)
+'''

@@ -31,11 +31,10 @@ It can be hard to find songs that are similar to one specific track, rather than
 - [x] When song ends go to next song (no back function)
   - [ ] Fix multiple requests to /next at song end
 - [x] Add to liked songs functionality (EDIT: Embedded player already has this functionality)
-- [ ] Validate only tracks are inputted (catch fails to /track endpoint)
 
 - [ ] Sort queue
     - [x] Mergesort
-    - [ ] Smoothsort
+    - [ ] Quicksort
     - [ ] Allow each by a song characteristic
 
 - [ ] Make new logo for tab
