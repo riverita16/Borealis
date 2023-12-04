@@ -59,7 +59,7 @@ def callback():
 
     spot.get_profile()
 
-    radio.curr_id = radio.generate()
+    radio.curr_id = radio.generate(True)
     print(radio.curr_id)
 
 @app.route('/upNext', methods=['GET'])

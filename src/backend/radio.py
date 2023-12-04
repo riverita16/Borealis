@@ -31,9 +31,9 @@ class Radio:
         return {'url':curr_url}
 
     # generate queue
-    def generate(self):
+    def generate(self, newStart=False):
         # first queue generation
-        if self.start_id == '':
+        if newStart:
             song = self.spot.request('https://api.spotify.com/v1/search?', {'q':f'track:{self.start_song} artist:{self.start_artist}', 'type':'track', 'limit':1})['tracks']['items']
             if len(song) == 0:
                 song = self.spot.request('https://api.spotify.com/v1/search?', {'q':f'{self.start_song} {self.start_artist}', 'type':'track', 'limit':1})['tracks']['items']
