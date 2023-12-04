@@ -1,31 +1,42 @@
-# Team 77 COP3530 Project 3
- No idea what this is gonna be
+# El Team Dream COP3530 Project 3
+Alanis Rivera-Narvaez, Jorge Ramirez, David Denis
 
-## Ideas?
-- **Spotify API** application to create visual radio **(I started some code for this)**
-  - User enters one song that is used to find similar songs and artists
+It can be hard to find songs that are similar to one specific track, rather than a broad category, artist, or genre. Spotify’s songs recommendations are sometimes unrelated, unreliable, out of place, and simply off. It is also time consuming to manually search for your next song. So users need a reliable, fast, and easier way to find new songs they like based on their preferences. A simple UI makes for minimal user interaction required but maximal satisfaction with the results.
+
+## Borealis
+- **Spotify API** application to find and listen to an infinite number of songs that are similar to just one -- personalized radio.
+  - User enters one song and that is used to find similar tracks and artists
   - Create queue and Spotify music player
-  - Add to library functionality?
+  - Sort the queue based on the user's audio characteristic and sorting algortihm selection
+  - **Python** backend
 
   - For **front-end**: 
-    - Show album art and audio visualization
+    - Show album art
     - Display song info 
-    - Other view shows visual representation of song selection algorithm
-    - **React** and **Flask** for frontend
-    - **openframeworks** looks cool for visualization
+    - **React JS** and **Flask** for frontend
 
-- **Reelgood API** to find similar movies to input
-  - Show streaming options for suggestions
-  - Show metadata (e.g. ratings, release, cast, etc.)
-  - Display movie poster & trailer
-
-- **NASA API** or some other planetary tracking api could be cool 
-  - Maybe doing a simulation type application that shows the stars relative to the user's location
-
-...
-
-## Data Structures
-...
+## Algorithms
+- Mergesort
+- Smoothsort
 
 ## Workflow
-archive rest of readme when we finalize project idea
+- [x] Flask interacts with React code
+- [x] Front end for home page
+- [x] Add characteristic and search algorithm drop downs
+      - [x] Send values on submit
+- [x] Spotify player renders
+- [x] Queue play works
+- [x] When song ends go to next song (no back function)
+  - [ ] Fix multiple requests to /next at song end
+- [x] Add to liked songs functionality (EDIT: Embedded player already has this functionality)
+- [ ] Validate only tracks are inputted (catch fails to /track endpoint)
+
+- [ ] Sort queue
+      - [ ] Quicksort
+      - [ ] Smoothsort
+      - [ ] Allow each by a song characteristic
+
+- [ ] Make new logo for tab
+
+# npm error fixes 'ERR_OSSL_EVP_UNSUPPORTED'
+- export NODE_OPTIONS=--openssl-legacy-provider
