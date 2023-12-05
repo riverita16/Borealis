@@ -13,13 +13,26 @@ It can be hard to find songs that are similar to one specific track, rather than
   - For **front-end**: 
     - Show album art
     - Display song info 
-    - **React JS** and **Flask** for frontend
+    - **React JS** and **Flask**
 
-**Note:** The program expects a song. If a different form of media is inputted, Borealis will find a song that most closely matches the entered name.
+**Notes:** 
+- The program expects a song. If a different form of media is inputted, Borealis will find a song that most closely matches the entered name.
+- The program CSS is based on Chrome. Ensure this is your default browser.
+
+## Getting Started
+1. Set the Client ID and Client Secret environment variables as per `src/backend/endpoints.py`
+2. Within src/backend run `python3 endpoints.py` to start **Flask** server on the localhost
+3. Within src/frontend run `npm run`
+4. Enter song name and artist
+5. Select sorting algorithm and characteristic
+6. Enter or click "Play"
+7. On newly opened window, sign into Spotify account.
+8. Go back to original browser to continue using the program
 
 ## Algorithms
-- Mergesort
-- Smoothsort
+- Merge Sort
+- Quick Sort
+- Bubble Sort
 
 ## Workflow
 - [x] Flask interacts with React code
@@ -41,13 +54,16 @@ It can be hard to find songs that are similar to one specific track, rather than
 
 # Dependencies
 - Spotify Developer account
-- set env vars
-- requests
-- selenium
-- flask
-- flask_cors
-- npm
-- react
+- Set environment vars / Client ID and Secret
+- python3
+- Installed with **pip3**
+  - requests
+  - selenium
+  - flask
+  - flask_cors
+  - npm
+  - react
+- Ran `npm install` for rest of node_modules
 
 # npm error fixes 'ERR_OSSL_EVP_UNSUPPORTED'
 - export NODE_OPTIONS=--openssl-legacy-provider
