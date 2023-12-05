@@ -21,8 +21,8 @@ It can be hard to find songs that are similar to one specific track, rather than
 
 ## Getting Started
 1. Set the Client ID and Client Secret environment variables as per `src/backend/endpoints.py`
-2. Within src/backend run `python3 endpoints.py` to start **Flask** server on the localhost
-3. Within src/frontend run `npm run`
+2. Within `src/backend` run `python3 endpoints.py` to start **Flask** server on the localhost
+3. Within `src/frontend` run `npm run`
 4. Enter song name and artist
 5. Select sorting algorithm and characteristic
 6. Enter or click "Play"
@@ -66,4 +66,4 @@ It can be hard to find songs that are similar to one specific track, rather than
 - Ran `npm install` for rest of node_modules
 
 # npm error fixes 'ERR_OSSL_EVP_UNSUPPORTED'
-- export NODE_OPTIONS=--openssl-legacy-provider
+- `export NODE_OPTIONS=--openssl-legacy-provider`
