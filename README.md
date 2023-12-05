@@ -15,6 +15,8 @@ It can be hard to find songs that are similar to one specific track, rather than
     - Display song info 
     - **React JS** and **Flask**
 
+- [Demo](https://youtu.be/8d2Dl2nf7Qg)
+
 **Notes:** 
 - The program expects a song. If a different form of media is inputted, Borealis will find a song that most closely matches the entered name.
 - The program CSS is based on Chrome. Ensure this is your default browser.

@@ -57,8 +57,8 @@ class Radio:
         for track in tracks:
             self.queue.append({'id': track['id'], 'url': track['external_urls']['spotify']})
 
-        self.sort()
         # print(self.queue)
+        self.sort()
 
         return self.start_id
     
@@ -86,6 +86,7 @@ class Radio:
             ids += track['id'] + ','
 
         ids = ids[:-1] # remove extra comma
+        print(ids)
 
         # queue now has characteristics for each track
         self.queue = self.analyze(ids, self.characteristic)
