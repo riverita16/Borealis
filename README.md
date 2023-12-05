@@ -24,6 +24,7 @@ It can be hard to find songs that are similar to one specific track, rather than
 ## Workflow
 - [x] Flask interacts with React code
 - [x] Front end for home page
+  - [x] Prevent form submit without all components set
 - [x] Add characteristic and search algorithm drop downs
       - [x] Send values on submit
 - [x] Spotify player renders
