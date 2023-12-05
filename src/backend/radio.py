@@ -95,22 +95,18 @@ class Radio:
             track[self.characteristic] = abs(start_charac - track[self.characteristic])
 
         # sort self.queue based on start_charac value
-
-        testq = self.queue
-
-        # if self.sort_alg == 'merge':
-        start_time = time()
-        testq = mergeSort(testq, self.characteristic)
-        end_time = time()
-        print(f'Merge Sort took {end_time - start_time} seconds')
-        # else: 
-
-        start_time = time()
-        quickSort(self, 0, len(self.queue) - 1)
-        end_time = time()
-        print(f'Quick Sort took {end_time - start_time} seconds')
-
-        start_time = time()
-        bubbleSort(self)
-        end_time = time()
-        print(f'Bubble Sort took {end_time - start_time} seconds')
+        if self.sort_alg == 'merge':
+            start_time = time()
+            mergeSort(self.queue, self.characteristic)
+            end_time = time()
+            print(f'Merge Sort took {end_time - start_time} seconds')
+        elif self.sort_alg == 'quick': 
+            start_time = time()
+            quickSort(self, 0, len(self.queue) - 1)
+            end_time = time()
+            print(f'Quick Sort took {end_time - start_time} seconds')
+        else:
+            start_time = time()
+            bubbleSort(self)
+            end_time = time()
+            print(f'Bubble Sort took {end_time - start_time} seconds')

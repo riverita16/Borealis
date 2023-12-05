@@ -46,10 +46,6 @@ const Radio = () => {
         }
     }, []);
 
-    const checkEnd = async () => {
-
-    }
-    
     // track user pause and play for visualizer
     useEffect(() => {
         window.addEventListener(
@@ -64,8 +60,6 @@ const Radio = () => {
                             return 'play'
                         } else if (prevState === 'play' && event.data.payload.isPaused) {
                             // when song ends go to next song
-                            // FIX MULTIPLE GET REQUESTS
-                            console.log(event.data.payload.position)
                             if (parseFloat(event.data.payload.position) === 0.0) {
                                 console.log('Song ended')
                                 const syntheticEvent = {
@@ -81,10 +75,7 @@ const Radio = () => {
                         }
     
                         return prevState
-                    });
-
-                    // console.log(parseInt(event.data.payload.position / 1000, 10) + ' : ' + parseInt(event.data.payload.duration / 1000, 10))
-                
+                    });                
                 } else if (event.data.type === 'ready') {
                     console.log('Song loaded')
 
@@ -99,10 +90,6 @@ const Radio = () => {
             },
             false,
         );
-
-        // return () => {
-        //     window.removeEventListener('message', handleIframeEvent);
-        // };
     }, [Next, playback]);
 
     return (
