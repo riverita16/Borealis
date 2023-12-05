@@ -22,7 +22,7 @@ function App() {
 
     const Grab = async (e) => {
         e.preventDefault()
-        if (!(song.trim() === '' || artist.trim() === '')) {
+        if (!(song.trim() === '' || artist.trim() === '' || characteristic.trim() === '' || sort.trim() === '')) {
             const data = {
                 song: song.trim(),
                 artist: artist.trim(),
@@ -76,7 +76,6 @@ function App() {
                     <div className='dropdown'>
                         <select name="characteristic" id="characteristic" onChange={(e) => setCharac(e.target.value)}>
                             <option value="" disabled selected id="placeholder">Characteristic</option>
-                            <option value="">None</option>
                             <option value="acousticness">Acousticness</option>
                             <option value="danceability">Danceability</option>
                             <option value="energy">Energy</option>
@@ -89,7 +88,6 @@ function App() {
 
                         <select name="sorting" id="sorting" onChange={(e) => setSort(e.target.value)}>
                             <option value="" disabled selected id="placeholder">Algorithm</option>
-                            <option value="">None</option>
                             <option value="merge">Merge Sort</option>
                             <option value="quick">Quick Sort</option>
                             <option value="bubble">Bubble Sort</option>
