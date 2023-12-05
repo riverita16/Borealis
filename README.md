@@ -52,7 +52,7 @@ It can be hard to find songs that are similar to one specific track, rather than
     - [x] Allow each by a song characteristic
     - [x] Execution comparisons
 
-# Dependencies
+## Dependencies
 - Spotify Developer account
 - Set environment vars / Client ID and Secret
 - python3
@@ -65,5 +65,5 @@ It can be hard to find songs that are similar to one specific track, rather than
   - react
 - Ran `npm install` for rest of node_modules
 
-# npm error fixes 'ERR_OSSL_EVP_UNSUPPORTED'
+### npm error fixes 'ERR_OSSL_EVP_UNSUPPORTED'
 - `export NODE_OPTIONS=--openssl-legacy-provider`
