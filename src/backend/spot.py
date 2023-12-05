@@ -33,7 +33,7 @@ class Spot:
 
         auth_url = 'https://accounts.spotify.com/authorize/?' + urllib.parse.urlencode(auth_request_params)
 
-        self.BROWSER.quit();
+        self.BROWSER.quit()
         options = Options()
         options.add_experimental_option("detach", True)
         self.BROWSER = webdriver.Chrome(options=options)
