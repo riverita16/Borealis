@@ -4,6 +4,7 @@ import urllib
 import base64
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from time import time
 
 # needs to be within endpoints with callback
 class Spot:
@@ -18,6 +19,8 @@ class Spot:
         self.BROWSER = webdriver.Chrome(options=options)
 
     ACCESS_TOKEN = ''
+    REFRESH_TOKEN = ''
+    START_TIME = 0.0
 
     def authorize(self, scope):
         auth_request_params = {
@@ -72,11 +75,38 @@ class Spot:
         if response.status_code == 200:
             return response.json()
         
-        raise Exception(f'Failed to obtain Access Token. Response: {response.text}')
-                    
+        raise Exception(f'Failed to obtain Access Token. Response: {response.status_code} {response.text}')
+
+    # refresh access token after expiration
+    def refresh_token(self):
+        endpoint = 'https://accounts.spotify.com/api/token/?'
+
+        header = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+
+        body = {
+            'grant_type': 'refresh_token',
+            'refresh_token': self.REFRESH_TOKEN,
+            'client_id': self.CLIENT_ID
+        }
+
+        response: requests.Response = requests.post(endpoint, data=body, headers=header)
+        if response.status_code == 200:
+            self.REFRESH_TOKEN = response.json()['refresh_token']
+            self.ACCESS_TOKEN = response.json()['access_token']
+        else:
+            raise Exception(f'Failed to refresh token. Response: {response.status_code} {response.text}')
+            
     # returns response json for parsing
     # expects body to be json
     def request(self, url, param):
+        # refresh token if expired
+        curr_time = time()
+        if round(curr_time - self.START_TIME) > 3540:
+            self.refresh_token()
+            print('refreshed')
+
         header = {
             'Authorization': f'Bearer {self.ACCESS_TOKEN}'
         }
@@ -85,4 +115,4 @@ class Spot:
         if response.status_code == 200:
             return response.json()
         else:
-            raise Exception(f'Failed Request. Response: {response.text}')
+            raise Exception(f'Failed Request. Response: {response.status_code} {response.text}')
