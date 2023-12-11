@@ -82,6 +82,7 @@ class Spot:
         endpoint = 'https://accounts.spotify.com/api/token/?'
 
         header = {
+            'Authorization': 'Basic ' + self.BASE64_AUTH_STR,
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
@@ -93,8 +94,8 @@ class Spot:
 
         response: requests.Response = requests.post(endpoint, data=body, headers=header)
         if response.status_code == 200:
-            self.REFRESH_TOKEN = response.json()['refresh_token']
             self.ACCESS_TOKEN = response.json()['access_token']
+            print('Refreshed token!')
         else:
             raise Exception(f'Failed to refresh token. Response: {response.status_code} {response.text}')
             
@@ -105,7 +106,6 @@ class Spot:
         curr_time = time()
         if round(curr_time - self.START_TIME) > 3540:
             self.refresh_token()
-            print('refreshed')
 
         header = {
             'Authorization': f'Bearer {self.ACCESS_TOKEN}'
