@@ -52,7 +52,7 @@ It can be hard to find songs that are similar to one specific track, rather than
 - [x] Add to liked songs functionality (EDIT: Embedded player already has this functionality)
 - [x] Added Home button
 - [x] Fixed multiple authentications in same runs if start song changed
-- [ ] Fix access token expiration -- check time change and re-auth with refresh token
+- [x] Fix access token expiration -- check time change and re-auth with refresh token
 
 - [x] Sort queue
   - [x] Merge Sort

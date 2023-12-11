@@ -76,9 +76,9 @@ class Radio:
                 append_str = f'\nSession started on {current_time.date()} at {current_time.hour}:{current_time.minute}:{current_time.second} with "{name}" by '
                 
                 for artist in artists:
-                    append_str += artist['name'] + ','
+                    append_str += artist['name'] + ', '
 
-                append_str = append_str[:-1] # trailing commas
+                append_str = append_str[:-2] # trailing commas
 
                 songs.write(append_str + '\n')
 
@@ -103,9 +103,9 @@ class Radio:
             append_str = f'"{name}" by '
             
             for artist in artists:
-                append_str += artist['name'] + ','
+                append_str += artist['name'] + ', '
 
-            append_str = append_str[:-1] # trailing commas
+            append_str = append_str[:-2] # trailing commas
 
             songs.write(append_str + '\n')
 
