@@ -44,6 +44,32 @@
   color: #000;
 }
 
+#back {
+  position: absolute;
+  margin-top: 20px;
+  left: 0;
+  z-index: 99 !important;
+}
+
+#back button {  
+  width: 150px;
+  height: 40px;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border: 1px solid #000;
+  background-color: transparent;
+  color: #000;
+  font-family: inherit;
+  font-size: inherit;
+  transition: all ease-in .2s;
+  cursor: pointer;
+}
+
+#back button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
 #up {
   position: absolute;
   height: 800px;

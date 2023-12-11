@@ -38,21 +38,29 @@ It can be hard to find songs that are similar to one specific track, rather than
 
 ## Workflow
 - [x] Flask interacts with React code
+  - [x] Fixed returning to '/' endpoint and doing new runs
 - [x] Front end for home page
   - [x] Prevent form submit without all components set
 - [x] Add characteristic and search algorithm drop downs
-      - [x] Send values on submit
+  - [x] Send values on submit
 - [x] Spotify player renders
 - [x] Queue play works
 - [x] When song ends go to next song (no back function)
+  - [x] Fix multiple calls to Next in auto queue
 - [x] Add to liked songs functionality (EDIT: Embedded player already has this functionality)
+- [x] Added Home button
+- [x] Fixed multiple authentications in same runs if start song changed
 
 - [x] Sort queue
-    - [x] Merge Sort
-    - [x] Quick Sort
-    - [x] Bubble Sort
-    - [x] Allow each by a song characteristic
-    - [x] Execution comparisons
+  - [x] Merge Sort
+  - [x] Quick Sort
+  - [x] Bubble Sort
+  - [x] Allow each by a song characteristic
+  - [x] Execution comparisons
+
+- [x] Add feature that adds played songs to .txt file for future reference
+  - [x] Do not push this file (add to .gitignore)
+  - [ ] Fix trailing comma
 
 ## Dependencies
 - Spotify Developer account

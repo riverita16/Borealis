@@ -26,6 +26,13 @@ class Radio:
     characteristic = ''
     sort_alg = ''
 
+    # reset all sets and arrays for subsequent runs
+    def clearAll(self):
+        self.queue.clear()
+        self.played.clear()
+        self.seed_genres.clear()
+        self.seed_artists.clear()
+
     # return HTML to embed player
     def songEmbed(self, song_id):
         self.played.add(song_id)
@@ -37,6 +44,8 @@ class Radio:
     def generate(self, newStart=False):
         # first queue generation
         if newStart:
+            self.clearAll()
+
             song = self.spot.request('https://api.spotify.com/v1/search?', {'q':f'track:{self.start_song} artist:{self.start_artist}', 'type':'track', 'limit':1})['tracks']['items']
             if len(song) == 0:
                 song = self.spot.request('https://api.spotify.com/v1/search?', {'q':f'{self.start_song} {self.start_artist}', 'type':'track', 'limit':1})['tracks']['items']
@@ -62,6 +71,22 @@ class Radio:
 
         return self.start_id
     
+
+    def songPlayed(self, id):
+        with open('../../songs.txt', 'a+') as songs:
+            track = self.spot.request('https://api.spotify.com/v1/tracks/'+id, {})
+            name = track['name']
+            artists = track['artists']
+            append_str = f'"{name}" by '
+            
+            for artist in artists:
+                append_str += artist['name'] + ','
+
+            append_str[:-2] # trailing commas
+
+            songs.write(append_str + '\n')
+
+
     # ids is string of comma-separated ids
     def analyze(self, ids, charac):
         characs = []
