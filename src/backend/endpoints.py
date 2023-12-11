@@ -37,11 +37,16 @@ def start():
         radio.characteristic = response['characteristic']
         radio.sort_alg = response['sort']
         
-        # authenticate with api
-        spot.authorize(SCOPE)
-        # wait for data
-        while radio.curr_id == '':
-            continue
+        # authenticate with api if not already
+        if spot.ACCESS_TOKEN == '':
+            spot.authorize(SCOPE)
+
+            # wait for data
+            while radio.curr_id == '':
+                continue
+        
+        else:
+            callback(False)
     else:
         callback()
         spot.callback = False
@@ -52,10 +57,11 @@ def start():
     spot.close_browser()
     return {'url':ret}
 
-def callback():
-    code = request.args.get('code')
-    credentials = spot.get_token(code)
-    spot.ACCESS_TOKEN = credentials['access_token']
+def callback(auth = True):
+    if auth:
+        code = request.args.get('code')
+        credentials = spot.get_token(code)
+        spot.ACCESS_TOKEN = credentials['access_token']
 
     radio.curr_id = radio.generate(True)
     print(radio.curr_id)
@@ -70,6 +76,7 @@ def next():
     print(len(radio.queue)) # FOR TESTING
     track = radio.queue.pop()
     radio.played.add(track['id'])
+    radio.songPlayed(track['id'])
 
     if len(radio.queue) == 0:
         radio.generate()
