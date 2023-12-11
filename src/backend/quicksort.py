@@ -27,16 +27,16 @@ def partition(array, low, high, charac):
 
 
  
-def quickSort(radio, low, high):
+def quick_sort(radio, low, high):
     if low < high:
  
         pivot = partition(radio.queue, low, high, radio.characteristic)
  
         # call quick sort on the left of pivot
-        quickSort(radio, low, pivot - 1)
+        quick_sort(radio, low, pivot - 1)
  
         # call quick sort on the right of pivot
-        quickSort(radio, pivot + 1, high)
+        quick_sort(radio, pivot + 1, high)
  
  
 # Testing
@@ -47,7 +47,7 @@ print(data)
  
 size = len(data)
  
-quickSort(data, 0, size - 1, 1)
+quick_sort(data, 0, size - 1, 1)
  
 print('Sorted Array in Ascending Order:')
 print(data)

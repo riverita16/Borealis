@@ -1,9 +1,10 @@
 from spot import Spot
 from flask import jsonify
-from mergesort import mergeSort
-from quicksort import quickSort
-from bubblesort import bubbleSort
+from mergesort import merge_sort
+from quicksort import quick_sort
+from bubblesort import bubble_sort
 from time import time
+from datetime import datetime
 
 # generate radio queue by getting similar song
 
@@ -15,7 +16,7 @@ class Radio:
 
         # associated with initial song
         self.seed_genres = set()
-        self.seed_artists = set ()
+        self.seed_artists = set()
 
     start_song = ''
     start_artist = ''
@@ -27,14 +28,14 @@ class Radio:
     sort_alg = ''
 
     # reset all sets and arrays for subsequent runs
-    def clearAll(self):
+    def clear_all(self):
         self.queue.clear()
         self.played.clear()
         self.seed_genres.clear()
         self.seed_artists.clear()
 
     # return HTML to embed player
-    def songEmbed(self, song_id):
+    def song_embed(self, song_id):
         self.played.add(song_id)
         # get song id spotify url
         curr_url = self.spot.request('https://api.spotify.com/v1/tracks/'+song_id, {})['external_urls']['spotify']
@@ -44,7 +45,7 @@ class Radio:
     def generate(self, newStart=False):
         # first queue generation
         if newStart:
-            self.clearAll()
+            self.clear_all()
 
             song = self.spot.request('https://api.spotify.com/v1/search?', {'q':f'track:{self.start_song} artist:{self.start_artist}', 'type':'track', 'limit':1})['tracks']['items']
             if len(song) == 0:
@@ -60,11 +61,33 @@ class Radio:
                 if 'genres' in artist:
                     self.seed_genres.update(artist['genres'])
 
+            # Prevent api errors with more than 5 seeds
+            while (len(self.seed_artists) + len(self.seed_genres) > 4):
+                self.seed_artists.pop()
+
+            while (len(self.seed_artists) + len(self.seed_genres) > 4):
+                self.seed_genres.pop()
+            
+            # append session info
+            with open('../../songs.txt', 'a+') as songs:
+                name = song['name']
+                artists = song['artists']
+                current_time = datetime.now()
+                append_str = f'\nSession started on {current_time.date()} at {current_time.hour}:{current_time.minute}:{current_time.second} with "{name}" by '
+                
+                for artist in artists:
+                    append_str += artist['name'] + ','
+
+                append_str = append_str[:-1] # trailing commas
+
+                songs.write(append_str + '\n')
+
         # all calls to queue generation
-        tracks = self.spot.request('https://api.spotify.com/v1/recommendations?', {'limit':100, 'seed_artists':self.seed_artists, 'seed_genres':self.seed_genres, 'seed_tracks':self.played, 'country':'US'})['tracks']
+        tracks = self.spot.request('https://api.spotify.com/v1/recommendations?', {'limit':100, 'seed_artists':self.seed_artists, 'seed_genres':self.seed_genres, 'seed_tracks':self.start_id, 'country':'US'})['tracks']
         
         for track in tracks:
-            self.queue.append({'id': track['id'], 'url': track['external_urls']['spotify']})
+            if track['id'] not in self.played: # no repeats
+                self.queue.append({'id': track['id'], 'url': track['external_urls']['spotify']})
 
         # print(self.queue)
         self.sort()
@@ -72,7 +95,7 @@ class Radio:
         return self.start_id
     
 
-    def songPlayed(self, id):
+    def write_song(self, id):
         with open('../../songs.txt', 'a+') as songs:
             track = self.spot.request('https://api.spotify.com/v1/tracks/'+id, {})
             name = track['name']
@@ -82,7 +105,7 @@ class Radio:
             for artist in artists:
                 append_str += artist['name'] + ','
 
-            append_str[:-2] # trailing commas
+            append_str = append_str[:-1] # trailing commas
 
             songs.write(append_str + '\n')
 
@@ -123,16 +146,16 @@ class Radio:
         # sort self.queue based on start_charac value
         if self.sort_alg == 'merge':
             start_time = time()
-            mergeSort(self.queue, self.characteristic)
+            merge_sort(self.queue, self.characteristic)
             end_time = time()
             print(f'Merge Sort took {end_time - start_time} seconds')
         elif self.sort_alg == 'quick': 
             start_time = time()
-            quickSort(self, 0, len(self.queue) - 1)
+            quick_sort(self, 0, len(self.queue) - 1)
             end_time = time()
             print(f'Quick Sort took {end_time - start_time} seconds')
         else:
             start_time = time()
-            bubbleSort(self)
+            bubble_sort(self)
             end_time = time()
             print(f'Bubble Sort took {end_time - start_time} seconds')

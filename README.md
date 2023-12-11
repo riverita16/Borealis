@@ -45,11 +45,14 @@ It can be hard to find songs that are similar to one specific track, rather than
   - [x] Send values on submit
 - [x] Spotify player renders
 - [x] Queue play works
+  - [x] Fixed for endless queue no repeats
+  - [x] Fixed potental api error if # of seeds exceeded 5
 - [x] When song ends go to next song (no back function)
   - [x] Fix multiple calls to Next in auto queue
 - [x] Add to liked songs functionality (EDIT: Embedded player already has this functionality)
 - [x] Added Home button
 - [x] Fixed multiple authentications in same runs if start song changed
+- [ ] Fix access token expiration -- check time change and re-auth with refresh token
 
 - [x] Sort queue
   - [x] Merge Sort
@@ -60,7 +63,8 @@ It can be hard to find songs that are similar to one specific track, rather than
 
 - [x] Add feature that adds played songs to .txt file for future reference
   - [x] Do not push this file (add to .gitignore)
-  - [ ] Fix trailing comma
+  - [x] Fix trailing comma
+  - [x] Add session info before appending songs
 
 ## Dependencies
 - Spotify Developer account

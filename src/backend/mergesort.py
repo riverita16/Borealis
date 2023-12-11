@@ -1,12 +1,12 @@
-def mergeSort(arr, charac):
+def merge_sort(arr, charac):
     if len(arr) > 1:
         mid = len(arr) // 2
         leftArr = arr[:mid]
         rightArr = arr[mid:]
 
         # Recursively sort the two halves
-        mergeSort(leftArr, charac)
-        mergeSort(rightArr, charac)
+        merge_sort(leftArr, charac)
+        merge_sort(rightArr, charac)
         
         merge(arr, leftArr, rightArr, charac)
 

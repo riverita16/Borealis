@@ -1,6 +1,6 @@
 import radio
 
-def bubbleSort(radio):
+def bubble_sort(radio):
     for i in range(0, len(radio.queue) - 1):
         for j in range(0, len(radio.queue) - i - 1):
             if (radio.queue[j][radio.characteristic] > radio.queue[j + 1][radio.characteristic]):
@@ -14,7 +14,7 @@ print(data)
  
 size = len(data)
  
-bubbleSort(data, 2)
+bubble_sort(data, 2)
  
 print('Sorted Array in Ascending Order:')
 print(data)

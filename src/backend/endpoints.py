@@ -3,6 +3,7 @@ from spot import Spot
 from radio import Radio
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from time import time
 
 HOST_IP_ADDRESS = 'localhost'
 HOST_PORT = '8080'
@@ -52,16 +53,18 @@ def start():
         spot.callback = False
 
     # return oEmbed API response for spotify player and visuals
-    ret = radio.songEmbed(radio.curr_id)['url']
+    ret = radio.song_embed(radio.curr_id)['url']
     radio.curr_id = ''
     spot.close_browser()
     return {'url':ret}
 
 def callback(auth = True):
     if auth:
+        spot.START_TIME = time()
         code = request.args.get('code')
         credentials = spot.get_token(code)
         spot.ACCESS_TOKEN = credentials['access_token']
+        spot.REFRESH_TOKEN = credentials['refresh_token']
 
     radio.curr_id = radio.generate(True)
     print(radio.curr_id)
@@ -76,9 +79,10 @@ def next():
     print(len(radio.queue)) # FOR TESTING
     track = radio.queue.pop()
     radio.played.add(track['id'])
-    radio.songPlayed(track['id'])
+    radio.write_song(track['id'])
 
-    if len(radio.queue) == 0:
+    # while loop in case they are all repeats
+    while len(radio.queue) == 0:
         radio.generate()
 
     return {'url':track['url']}
