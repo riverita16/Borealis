@@ -95,6 +95,7 @@ class Spot:
         response: requests.Response = requests.post(endpoint, data=body, headers=header)
         if response.status_code == 200:
             self.ACCESS_TOKEN = response.json()['access_token']
+            self.START_TIME = time()
             print('Refreshed token!')
         else:
             raise Exception(f'Failed to refresh token. Response: {response.status_code} {response.text}')
