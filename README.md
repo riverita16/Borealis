@@ -65,6 +65,8 @@ It can be hard to find songs that are similar to one specific track, rather than
   - [x] Do not push this file (add to .gitignore)
   - [x] Fix trailing comma
   - [x] Add session info before appending songs
+  - [ ] Supplemental program to help parse these
+    - [ ] Add link to each song to help user
 
 - [ ] Further `songs.txt` functionality
   - [ ] Add switch to control whether the session is being written to the file
