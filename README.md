@@ -66,6 +66,9 @@ It can be hard to find songs that are similar to one specific track, rather than
   - [x] Fix trailing comma
   - [x] Add session info before appending songs
 
+- [ ] Further `songs.txt` functionality
+  - [ ] Add switch to control whether the session is being written to the file
+
 ## Dependencies
 - Spotify Developer account
 - Set environment vars / Client ID and Secret
