@@ -1,3 +1,6 @@
 .DS_Store
 
 songs.txt
+backup.txt
+
+__pycache__
