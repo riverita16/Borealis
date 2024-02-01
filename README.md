@@ -1,6 +1,3 @@
-# El Team Dream COP3530 Project 3
-Alanis Rivera-Narvaez, Jorge Ramirez, David Denis
-
 It can be hard to find songs that are similar to one specific track, rather than a broad category, artist, or genre. Spotify’s songs recommendations are sometimes unrelated, unreliable, out of place, and simply off. It is also time consuming to manually search for your next song. So users need a reliable, fast, and easier way to find new songs they like based on their preferences. A simple UI makes for minimal user interaction required but maximal satisfaction with the results.
 
 ## Borealis
@@ -28,7 +25,7 @@ It can be hard to find songs that are similar to one specific track, rather than
 4. Enter song name and artist
 5. Select sorting algorithm and characteristic
 6. Enter or click "Play"
-7. On newly opened window, sign into Spotify account (use creds under `tester/creds.txt` if not whitelisted)
+7. On newly opened window, sign into Spotify account (ensure user is whitelisted)
 8. Go back to original browser to continue using the program
 
 ## Algorithms
@@ -86,3 +83,4 @@ It can be hard to find songs that are similar to one specific track, rather than
 
 ### npm error fixes 'ERR_OSSL_EVP_UNSUPPORTED'
 - `export NODE_OPTIONS=--openssl-legacy-provider`
+
